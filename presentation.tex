@@ -118,7 +118,7 @@ Thomson Scattering $T$ anisotropies $\rightarrow$ CMB Polarization: \pause
 
 \subsection{LSPE/Strip}
 
-\begin{frame}[label=1]
+\begin{frame}
 \frametitle{LSPE/Strip}
 
 \begin{columns}
@@ -154,19 +154,24 @@ Thomson Scattering $T$ anisotropies $\rightarrow$ CMB Polarization: \pause
 \frametitle{Atmospheric Radiative Balance}
 
 \begin{itemize}
-\item<1-> Atmosphere $\rightarrow$ \alert{dispersive} medium $\rightarrow \epsilon = \epsilon_R + i\epsilon_I$
-\item<2-> \only<2-3>{$\epsilon_R \propto \sqrt{n_\nu}$}\only<4->{\sout{$\epsilon_R \propto \sqrt{n_\nu}$}},
+\item<1-4,6-> Atmosphere $\rightarrow$ \alert{dispersive} medium $\rightarrow \epsilon = \epsilon_R + i\epsilon_I$
+\item<2-4,6-> \only<2-3>{$\epsilon_R \propto \sqrt{n_\nu}$}\only<4->{\sout{$\epsilon_R \propto \sqrt{n_\nu}$}},
           \quad $\epsilon_I \propto \alpha_\nu$ \onslide<3->{$\rightarrow$  $O_2$, $H_2O$}
 \end{itemize}
 
+\only<5>{
+\begin{tikzpicture}[remember picture,overlay]
+\node at (6,-1.8) {\includegraphics[width=0.70\textwidth]{transmittance_teide}};
+\end{tikzpicture}
+}
 
-\begin{block}{Radiative Transfer Equation}<5->
+\begin{block}{Radiative Transfer Equation}<6->
 \begin{equation}
 \frac{dI_\nu}{ds} = -\alpha I_\nu + j_\nu
 \end{equation}
 \end{block}
 
-\begin{block}{Kirchhoff Law \onslide<7->{\textcolor{red}{(Valid for system at LTE e.g ELA)}}}<6->
+\begin{block}{Kirchhoff Law \onslide<7->{\textcolor{red}{(Valid for system at LTE e.g ELA)}}}<7->
 \begin{equation}
 B_\nu(T) = \frac{j_\nu(T)}{\alpha_\nu(T)}
 \end{equation}
@@ -208,6 +213,113 @@ T_{sky}(\nu) = \textcolor<5>{red}{T_{atm}^{ph}(1 - e^{-\tau_A(\nu)})} + T_{CMB}(
 \item<8-> Write radiative transfer equation for each layer \onslide<10->{$\rightarrow$ \textcolor{red}{input?}}
 \item<9-> Solve this system of equations
 \end{itemize}
+
+\end{frame}
+
+\subsection{Atmopsheric Turbulent Structure}
+
+\begin{frame}
+\frametitle{Atmopsheric Turbulent Structure}
+
+\only<1-8>{
+\onslide<1->{
+\small
+\begin{align*}
+        \expval{\var{T^2_\text{A}}} = & \frac{1}{\lambda^2}
+        \int^{z_u}_{z_c}\iint^\infty_{-\infty}
+        \int^{z_u}_{z_c}\iint^\infty_{-\infty}
+        \frac{\dd{x_1}\dd{y_1}\dd{z_1}}{z^2_1}
+        \frac{\dd{x_2}\dd{y_2}\dd{z_2}}{z^2_2} \times \\
+        & \times A_{\text{eff},\nu}\qty(x_1,y_1,z_1)
+        A_{\text{eff},\nu}\qty(x_2,y_2,z_2)
+        \textcolor<2->{red}{\expval{\var{\alpha_\nu}\qty(x_1,y_1,z_1)
+        \var{\alpha_\nu}\qty(x_2,y_2,z_2)}}
+        T\qty(z_1)T\qty(z_1)
+\end{align*}
+}
+
+\begin{block}{Absorption Coefficient Correlation Function}<3->
+        \begin{equation}
+                B_\alpha\qty(\vb{r}_1,\vb{r}_2) = \frac{1}{2}
+                C^2_\alpha\qty(\abs{\vb{r}_1 + \vb{r}_2})
+                L^{\frac{2}{3}}_0
+                \textcolor<4->{red}{b_\alpha\qty(\abs{\vb{r}_1
+                - \vb{r}_2})},\quad
+                \textcolor<5>{blue}{l_0} \ll \abs{\vb{r}_1 - \vb{r}_2}
+                \ll \textcolor<6>{blue}{L_0}
+        \end{equation}
+\end{block}
+
+\begin{block}{Normalized Kolmogorov Correlation Function}<7->
+\begin{equation}
+        b_\alpha\qty(\Delta r) \propto \frac{1}{\Delta r}
+        \int^{k_\text{max}}_{k_0} \dd{k} k \phi\qty(k) \sin(k\Delta r)
+        \onslide<8->{
+                ,
+                \quad \phi\qty(k) \propto k^{-\frac{11}{3}},
+                \quad k_0 \sim 1/L_0,\quad k_\text{max} \sim 1/l_0
+        }
+\end{equation}
+\end{block}
+}
+
+\centering
+\includegraphics<9->[width=0.8\textwidth]{kt_spectrum}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Fluctuations Temporal Power Spectrum}
+
+\only<1-9>{
+\begin{block}{Power Spectrum of $T_A$ Fluctuations}<1->
+        \begin{equation}
+                S\qty(\omega) = \frac{1}{\sqrt{2\pi}} \int^\infty_\infty \dd{t_*}
+                e^{-i\omega t_*}
+                \expval{\var{T_A\qty(\vb{x}\qty(t))}
+                \var{T_A\qty(\textcolor<2->{red}{\vb{x}\qty(t) - \vb{v}t_*})}}
+                \onslide<3->{
+                        \rightarrow S\qty(\omega) =
+                        \textcolor<4>{blue}{I\qty(\frac{\omega}{v})}
+                        \times
+                        \textcolor<5->{blue}{\phi\qty(\frac{\omega}{v})}
+                }
+        \end{equation}
+\end{block}
+
+\begin{block}{Temporal Power Spectrum Limiting Cases}<6->
+        \only<-7>{%
+                \begin{equation}
+                        \qif w(Z) \gg L_0:\qquad
+                        \Phi\qty(\frac{\omega}{v}) \propto
+                                \begin{cases}
+                                        \qty(\frac{\omega}{v})^{
+                                        \textcolor<7>{red}{\frac{11}{3}}} & \qif
+                                        \frac{1}{L_0} \ll \frac{\omega}{v}
+                                        \ll \frac{1}{l_0} \\
+                                        K & \qif \frac{\omega}{v} \ll \frac{1}{L_0}
+                                \end{cases}
+                \end{equation}
+        }%
+        \only<8->{%
+                \begin{equation}
+                        \qif w(Z) \ll L_0:\qquad
+                        \Phi\qty(\frac{\omega}{v}) \propto
+                                \begin{cases}
+                                        \qty(\frac{\omega}{v})^{
+                                        \textcolor<9>{red}{\frac{8}{3}}} & \qif
+                                        \frac{1}{L_0} \ll \frac{\omega}{v}
+                                        \ll \frac{1}{l_0} \\
+                                        K' & \qif \frac{\omega}{v} \ll \frac{1}{L_0}
+                                \end{cases}
+                \end{equation}
+        }%
+\end{block}
+}
+
+\centering
+\includegraphics<10->[width=1\textwidth]{t_antenna_ps_horizontal}
+
 
 \end{frame}
 
