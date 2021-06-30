@@ -109,7 +109,7 @@ Thomson Scattering $T$ anisotropies $\rightarrow$ CMB Polarization: \pause
 \vspace{80pt}
 \centering
 \LARGE
-\alert{\textit{Smoking gun} inflactionary paradigm}
+\alert{\textit{Smoking gun} inflationary paradigm}
 }
 
 \end{itemize}
@@ -333,7 +333,7 @@ T_{sky}(\nu) = \textcolor<5>{red}{T_{atm}^{ph}(1 - e^{-\tau_A(\nu)})} + T_{CMB}(
 \begin{itemize}
 \item<1-8> Estimates large number of climate variables
 \item<2-8> Earth covered
-\item<3-8> $\sim$40 years of data (1980-2020)
+\item<3-8> $\sim$40 years of data (1979-2020)
 \item<4-8> Spatial resolution $\rightarrow$ 0.25\textdegree ($\sim$30 Km)
 \item<5-8> Temporal resolution $\rightarrow$ 1 hour
 \end{itemize}
@@ -624,7 +624,7 @@ k(\nu) = \frac{T_{sky}^{AM}(\nu)}{T_{sky}^{CAL}(\nu)}
 \tikzoverlay[text width=8cm] at (2.8,4.5) {
 \begin{block}{Atmospheric Brightness Temperature (Calibrated)}
 \begin{equation}
-T_{atm}^A(\nu) = k(\nu)[T_{sky}(\nu) - T_{CMB}(\nu)e^{-\tau_A(\nu)}]
+T_{atm}(\nu) = k(\nu)[T_{sky}(\nu) - T_{CMB}(\nu)e^{-\tau_A(\nu)}]
 \end{equation}
 \end{block}
 };
@@ -660,7 +660,7 @@ $T_{atm}$ matrices (Open source and GNU GPLv3 licensed when accomplished)
 \item<2-> Calls \texttt{CAL} methods to simulate $T_{sky}$s
 \item<3-> Parallel execution with \texttt{OpenMPI}
 \item<4-> Input $\rightarrow$ CDFs \texttt{.fits} file for desired site, $\nu$
-\item<5-> \texttt{.npz} cointaning the populations
+\item<5-> Outout $\rightarrow$ \texttt{.npz} including populations
 \end{itemize}
 
 \vspace{0.2cm}
