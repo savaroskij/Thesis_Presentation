@@ -154,24 +154,24 @@ Thomson Scattering $T$ anisotropies $\rightarrow$ CMB Polarization: \pause
 \frametitle{Atmospheric Radiative Balance}
 
 \begin{itemize}
-\item<1-4,6-> Atmosphere $\rightarrow$ \alert{dispersive} medium $\rightarrow \epsilon = \epsilon_R + i\epsilon_I$
-\item<2-4,6-> \only<2-3>{$\epsilon_R \propto \sqrt{n_\nu}$}\only<4->{\sout{$\epsilon_R \propto \sqrt{n_\nu}$}},
+\item<1-3,5-> Atmosphere $\rightarrow$ \alert{dispersive} medium $\rightarrow \epsilon = \epsilon_R + i\epsilon_I$
+\item<2-3,5-> \only<2-5>{$\epsilon_R \propto \sqrt{n_\nu}$}\only<6->{\sout{$\epsilon_R \propto \sqrt{n_\nu}$}},
           \quad $\epsilon_I \propto \alpha_\nu$ \onslide<3->{$\rightarrow$  $O_2$, $H_2O$}
 \end{itemize}
 
-\only<5>{
+\only<4>{
 \begin{tikzpicture}[remember picture,overlay]
 \node at (6,-1.8) {\includegraphics[width=0.70\textwidth]{transmittance_teide}};
 \end{tikzpicture}
 }
 
-\begin{block}{Radiative Transfer Equation}<6->
+\begin{block}{Radiative Transfer Equation}<7->
 \begin{equation}
-\frac{dI_\nu}{ds} = -\alpha I_\nu + j_\nu
+\frac{dI_\nu}{ds} = -\alpha_\nu I_\nu + j_\nu
 \end{equation}
 \end{block}
 
-\begin{block}{Kirchhoff Law \onslide<7->{\textcolor{red}{(Valid for system at LTE e.g ELA)}}}<7->
+\begin{block}{Kirchhoff Law \onslide<9->{\textcolor{red}{(Valid for system at LTE e.g ELA)}}}<8->
 \begin{equation}
 B_\nu(T) = \frac{j_\nu(T)}{\alpha_\nu(T)}
 \end{equation}
@@ -202,17 +202,12 @@ T_{sky}(\nu) = \textcolor<5>{red}{T_{atm}^{ph}(1 - e^{-\tau_A(\nu)})} + T_{CMB}(
 }%
 \only<6->{%
 \begin{equation}
-\textcolor{red}{T_{atm}^A(\nu)} = T_{sky}(\nu) - T_{CMB}(\nu)e^{-\tau_A(\nu)}
+\textcolor{red}{T_{atm}(\nu)} = T_{sky}(\nu) - T_{CMB}(\nu)e^{-\tau_A(\nu)}
 \end{equation}
 }%
 \end{block}
 
-\onslide<7->{Computational approach:}
-\begin{itemize}
-\item<7-> Atmosphere discretization into \alert{layers}
-\item<8-> Write radiative transfer equation for each layer \onslide<10->{$\rightarrow$ \textcolor{red}{input?}}
-\item<9-> Solve this system of equations
-\end{itemize}
+\vspace{2cm}
 
 \end{frame}
 
@@ -320,6 +315,32 @@ T_{sky}(\nu) = \textcolor<5>{red}{T_{atm}^{ph}(1 - e^{-\tau_A(\nu)})} + T_{CMB}(
 \centering
 \includegraphics<10->[width=1\textwidth]{t_antenna_ps_horizontal}
 
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Atmospheric Brightness Temperature}
+
+Solution radiative transfer equation $\rightarrow$ KL $\rightarrow$ $j_\nu = \alpha_\nu B_\nu(T_{atm}^{ph})$ :
+
+\begin{equation}
+\frac{1}{\alpha_\nu}\frac{dI_\nu}{ds} = -\frac{dI_\nu}{d\tau} = -I_\nu + B_\nu\left(T_{atm}^{ph}\right)
+\end{equation}
+
+Integrating from ground to \alert{tropopause} and applaying RJ approximation:
+
+\begin{block}{Atmospheric Brightness Temperature}
+\begin{equation}
+\textcolor{red}{T_{atm}(\nu)} = T_{sky}(\nu) - T_{CMB}(\nu)e^{-\tau_A(\nu)}
+\end{equation}
+\end{block}
+
+\onslide<2->{Numerical approach:}
+\begin{itemize}
+\item<3-> Atmosphere discretization into \alert{layers}
+\item<4-> Write radiative transfer equation for each layer \onslide<6->{$\rightarrow$ \textcolor{red}{input?}}
+\item<5-> Solve this system of equations
+\end{itemize}
 
 \end{frame}
 
