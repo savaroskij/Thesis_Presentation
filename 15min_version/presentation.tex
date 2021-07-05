@@ -13,6 +13,11 @@
 % for degree symbol
 \usepackage{textcomp}
 
+\usepackage{amssymb}% http://ctan.org/pkg/amssymb
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
 % compile only one certain frame
 %\includeonlyframes{1}
 
@@ -520,14 +525,28 @@ k(\nu) = \frac{T_{sky}^\text{Probes}(\nu)}{T_{sky}^{CAL}(\nu)}%
 
 \section{Conclusions}
 
-\begin{frame}
+\begin{frame}[label=1]
 \frametitle{Conclusions}
 
-\begin{itemize}[<+->]
-        \item \dots
-        \item \dots
-        \item \dots
+\begin{itemize}
+        \item<1-> I can estimate \alert{white noise} extra load
+        {\large \textcolor{green}{\cmark}}
+        \item<2-> I can predict its \alert{seasonal variations}
+        {\large \textcolor{green}{\cmark}}
+        \item<3-> I can not predict \alert{correlated fluctuations} in
+        atmospheric emission {\large \textcolor{red}{\xmark}}\\
+        \onslide<4->{
+        \dots \textcolor{red}{but} I'm confident that this can be done in
+        future works!
+        }
 \end{itemize}
+
+\vspace{1.5cm}
+
+\onslide<5->{
+        \centering
+        \huge \alert{Thank you!}
+}
 
 \end{frame}
 
