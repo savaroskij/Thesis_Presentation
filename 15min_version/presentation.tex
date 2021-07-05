@@ -550,4 +550,123 @@ k(\nu) = \frac{T_{sky}^\text{Probes}(\nu)}{T_{sky}^{CAL}(\nu)}%
 
 \end{frame}
 
+\appendix
+
+\section{\texttt{tatmget}}
+
+\begin{frame}
+\frametitle{\texttt{tatmget}}
+
+\onslide<1->{
+\texttt{Python 3} script to simulate statistical populations of seasonal
+$T_{atm}$ matrices (Open source and GNU GPLv3 licensed when accomplished)
+}
+
+\vspace{0.2cm}
+
+\onslide<2->{Overview:}
+\begin{itemize}
+\item<2-> Calls \texttt{CAL} methods to simulate $T_{sky}$s
+\item<3-> Parallel execution with \texttt{OpenMPI}
+\item<4-> Input $\rightarrow$ CDFs \texttt{.fits} file for desired site, $\nu$
+\item<5-> Outout $\rightarrow$ \texttt{.npz} including populations
+\end{itemize}
+
+\vspace{0.2cm}
+
+\onslide<6->{Improvements:}
+\begin{itemize}
+\item<6-> Output populations of meteorological parameters only
+\item<7-> Output uncalibrated or calibrated $T_{atm}$s
+\item<8-> Output approximated $T_{atm}$s estimating $T_{atm}^{ph}$
+\item<9-> Output $T_{atm}$s \alert{convoluted} with \alert{arbitrary bandshapes}\\
+\onslide<10->{$\rightarrow$ execution time reduced by a $\sim$ 15 factor from first version}
+
+\end{itemize}
+
+\end{frame}
+
+
+\section{White Noise Extra Load}
+
+\begin{frame}
+\frametitle{Strip Q-Band Bandshapes}
+
+\centering
+\includegraphics<1>[height=0.92\textheight]{Strip_Bandshapes}%
+\includegraphics<2>[height=0.92\textheight]{Strip_Bandshapes+TATM.pdf}%
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Bandshape Integration}
+
+\only<1-3,16->{
+\begin{block}{Convolution Integral}<1->
+        \begin{equation}
+                T^{atm}_A = \frac{ \int^\infty_0 \dd{\nu} T_{atm}(\nu)
+                \text{BS}(\nu)}{\int^\infty_0 \dd{\nu} \text{BS}(\nu)}
+        \end{equation}
+\end{block}
+
+\begin{itemize}
+        \item<2-> $9900\ \text{elements} \times 288\ \text{hours} \times 49\
+        \text{detectors} \rightarrow \alert{\sim 1250}\ \text{CPU hours}$
+        \item<3-> \alert{INDACO} $\rightarrow$ $50 \times$ E5-2683V4, 2.1 GHz
+        cores; 2000 TB RAM (Max)
+\end{itemize}
+\begin{block}{Sensitivity (Single Detector)}<16->
+        \only<16>{%
+        \vskip 0.6em
+        \begin{equation}
+                \Delta T^{atm}_A = \frac{T^{atm}_A}
+                {\sqrt{\Delta\nu_\text{eff} \tau}},\quad
+                \tau = \frac{1}{50} s
+        \end{equation}
+        }%
+        \only<17->{%
+        \begin{equation}
+                \Delta \nu_\text{eff} = \frac{\qty[\int^\infty_0 \dd{\nu}
+                \text{BS}(\nu)]^2}{\int^\infty_0 \text{BS}^2(\nu)}
+        \end{equation}
+        }%
+\end{block}
+}
+
+\centering
+\includegraphics<4>[height=0.91\textheight]{Convoluted_TATM_Teide/Convoluted_TATM_Teide_Month_1}%
+\includegraphics<5>[height=0.91\textheight]{Convoluted_TATM_Teide/Convoluted_TATM_Teide_Month_2}%
+\includegraphics<6>[height=0.91\textheight]{Convoluted_TATM_Teide/Convoluted_TATM_Teide_Month_3}%
+\includegraphics<7>[height=0.91\textheight]{Convoluted_TATM_Teide/Convoluted_TATM_Teide_Month_4}%
+\includegraphics<8>[height=0.91\textheight]{Convoluted_TATM_Teide/Convoluted_TATM_Teide_Month_5}%
+\includegraphics<9>[height=0.91\textheight]{Convoluted_TATM_Teide/Convoluted_TATM_Teide_Month_6}%
+\includegraphics<10>[height=0.91\textheight]{Convoluted_TATM_Teide/Convoluted_TATM_Teide_Month_7}%
+\includegraphics<11>[height=0.91\textheight]{Convoluted_TATM_Teide/Convoluted_TATM_Teide_Month_8}%
+\includegraphics<12>[height=0.91\textheight]{Convoluted_TATM_Teide/Convoluted_TATM_Teide_Month_9}%
+\includegraphics<13>[height=0.91\textheight]{Convoluted_TATM_Teide/Convoluted_TATM_Teide_Month_10}%
+\includegraphics<14>[height=0.91\textheight]{Convoluted_TATM_Teide/Convoluted_TATM_Teide_Month_11}%
+\includegraphics<15>[height=0.91\textheight]{Convoluted_TATM_Teide/Convoluted_TATM_Teide_Month_12}%
+
+\end{frame}
+
+\begin{frame}
+\frametitle{White Noise Load}
+
+\centering
+\includegraphics<1>[height=0.91\textheight]{Convoluted_TATM_Teide/TA_Sens_Detectors_Average_Teide_Month_1}%
+\includegraphics<2>[height=0.91\textheight]{Convoluted_TATM_Teide/TA_Sens_Detectors_Average_Teide_Month_2}%
+\includegraphics<3>[height=0.91\textheight]{Convoluted_TATM_Teide/TA_Sens_Detectors_Average_Teide_Month_3}%
+\includegraphics<4>[height=0.91\textheight]{Convoluted_TATM_Teide/TA_Sens_Detectors_Average_Teide_Month_4}%
+\includegraphics<5>[height=0.91\textheight]{Convoluted_TATM_Teide/TA_Sens_Detectors_Average_Teide_Month_5}%
+\includegraphics<6>[height=0.91\textheight]{Convoluted_TATM_Teide/TA_Sens_Detectors_Average_Teide_Month_6}%
+\includegraphics<7>[height=0.91\textheight]{Convoluted_TATM_Teide/TA_Sens_Detectors_Average_Teide_Month_7}%
+\includegraphics<8>[height=0.91\textheight]{Convoluted_TATM_Teide/TA_Sens_Detectors_Average_Teide_Month_8}%
+\includegraphics<9>[height=0.91\textheight]{Convoluted_TATM_Teide/TA_Sens_Detectors_Average_Teide_Month_9}%
+\includegraphics<10>[height=0.91\textheight]{Convoluted_TATM_Teide/TA_Sens_Detectors_Average_Teide_Month_10}%
+\includegraphics<11>[height=0.91\textheight]{Convoluted_TATM_Teide/TA_Sens_Detectors_Average_Teide_Month_11}%
+\includegraphics<12>[height=0.91\textheight]{Convoluted_TATM_Teide/TA_Sens_Detectors_Average_Teide_Month_12}%
+\includegraphics<13>[height=0.91\textheight]{TA_Sens_Matrix_Detectors_Average}%
+
+\end{frame}
+
 \end{document}
